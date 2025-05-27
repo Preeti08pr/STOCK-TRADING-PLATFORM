@@ -1,0 +1,71 @@
+import java.util.*;
+
+class Stock {
+    String symbol;
+    String companyName;
+    double price;
+
+    public Stock(String symbol, String companyName, double price) {
+        this.symbol = symbol;
+        this.companyName = companyName;
+        this.price = price;
+    }
+}
+
+class Portfolio {
+    private double balance;
+    private Map<String, Integer> holdings;
+
+    public Portfolio(double initialBalance) {
+        this.balance = initialBalance;
+        this.holdings = new HashMap<>();
+    }
+
+    public boolean buyStock(Stock stock, int quantity) {
+        double totalCost = stock.price * quantity;
+        if (balance >= totalCost) {
+            balance -= totalCost;
+            holdings.put(stock.symbol, holdings.getOrDefault(stock.symbol, 0) + quantity);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean sellStock(Stock stock, int quantity) {
+        int owned = holdings.getOrDefault(stock.symbol, 0);
+        if (owned >= quantity) {
+            holdings.put(stock.symbol, owned - quantity);
+            balance += stock.price * quantity;
+            return true;
+        }
+        return false;
+    }
+
+    public void printPortfolio(Map<String, Stock> stockMap) {
+        System.out.println("\n--- Portfolio ---");
+        System.out.printf("Balance: $%.2f\n", balance);
+        for (String symbol : holdings.keySet()) {
+            int qty = holdings.get(symbol);
+            Stock stock = stockMap.get(symbol);
+            System.out.println(symbol + " ("
+ 
+                    student.addGrade(grade);
+                }
+            }
+            scanner.nextLine(); // clear newline
+            studentList.add(student);
+            System.out.println("Student " + name + " added.\n");
+        }
+
+        System.out.println("\n=== Grade Report ===");
+        for (Student s : studentList) {
+            System.out.println("Student: " + s.getName());
+            s.printGrades();
+            System.out.printf("Average: %.2f\n", s.getAverage());
+            System.out.println("Letter Grade: " + s.getLetterGrade());
+            System.out.println("----------------------------");
+        }
+
+        scanner.close();
+    }
+}
